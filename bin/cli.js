@@ -10,11 +10,11 @@ var program = require('commander');
 var GA_VERSION = 1;
 var GA_CLIENT_ID = Math.round(2147483647 * Math.random());
 var GA_HIT_TYPE = 'event';
-var GA_EVENT_CATEGORY = 'GAR';
+var GA_EVENT_CATEGORY = 'GAER';
 
 program
   .version(require('../package.json').version)
-  .usage('<Google Tracking ID> <Report Name> <JSON>')
+  .usage('<GA Tracking ID> <Report Name> <JSON>')
   .parse(process.argv);
 
 if (!program.args.length) {
@@ -29,7 +29,7 @@ var gaEventValue = 80;
 
 var options = {
   url: 'https://ssl.google-analytics.com/collect',
-  headers: { 'User-Agent': 'GAR' },
+  headers: { 'User-Agent': 'GAER' },
   form: {
     v: GA_VERSION,
     tid: gaTrackingId,

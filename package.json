@@ -2,27 +2,35 @@
   "name": "gaer",
   "version": "0.0.1",
   "description": "A CLI for Google Analytics Event Tracking Report",
-  "main": "index.js",
-  "scripts": {
-    "test": ""
-  },
   "bin": {
-    "gar": "bin/cli.js"
+    "gaer": "bin/cli.js"
   },
   "author": {
     "name": "Koji Ishimoto",
     "email": "ijok.ijok@gmail.com",
     "web": "http://t32k.me/"
   },
+  "homepage": "https://github.com/t32k/gaer",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/t32k/gaer.git"
   },
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/t32k/gaer/issues"
   },
-  "homepage": "https://github.com/t32k/gaer",
+  "keywords": [
+    "Google Analytics",
+    "Event Tracking",
+    "Report",
+    "property"
+  ],
+  "engines": {
+    "node": "0.10.x"
+  },
+  "scripts": {
+    "test": ""
+  },
   "dependencies": {
     "chalk": "^1.0.0",
     "commander": "^2.7.1",
