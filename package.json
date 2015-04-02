@@ -34,6 +34,7 @@
   "dependencies": {
     "chalk": "^1.0.0",
     "commander": "^2.7.1",
+    "progress": "^1.1.8",
     "request": "^2.54.0",
     "underscore": "^1.8.2"
   }
