@@ -1,0 +1,21 @@
+{
+  "stylesheets": 2,
+  "size": 6682,
+  "dataUriSize": 0,
+  "gzippedSize": 1992,
+  "rules": 86,
+  "selectors": 179,
+  "simplicity": 0.48044692737430167,
+  "mostIdentifier": 2,
+  "lowestCohesion": 17,
+  "totalUniqueFontSizes": 12,
+  "totalUniqueFontFamilies": 1,
+  "totalUniqueColors": 6,
+  "idSelectors": 0,
+  "universalSelectors": 0,
+  "unqualifiedAttributeSelectors": 17,
+  "javascriptSpecificSelectors": 0,
+  "importantKeywords": 0,
+  "floatProperties": 4,
+  "mediaQueries": 3
+}
