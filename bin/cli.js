@@ -9,8 +9,8 @@ var request = require('request');
 var program = require('commander');
 var ProgressBar = require('progress');
 
-var util = require('../lib/util');
 var pkg = require('../package.json');
+var util = require('../lib/util');
 
 var UA = 'GAERbot/' + pkg.version + ' (+' + pkg.homepage + ')';
 var GA_URL_ENDPOINT = 'https://ssl.google-analytics.com/collect';
@@ -61,8 +61,8 @@ if (util.isFile(program.args[0])) {
   } catch (e) {
     throw e;
   }
-} else if (_.isObject(program.args[0])) {
-  jsonData = program.args[0];
+} else {
+  util.error('argument must be JSON');
 }
 
 var bar = new ProgressBar('Sending [:bar] :percent', {
@@ -71,12 +71,14 @@ var bar = new ProgressBar('Sending [:bar] :percent', {
   width: 24,
   total: _.size(jsonData)
 });
-_.each(jsonData, function(value){
+
+Object.keys(jsonData).forEach(function(key, value){
   if(isNaN(value)) {
     util.error('`value` must be numeric.');
   }
 });
-_.each(jsonData, function(value, key){
+
+Object.keys(jsonData).forEach(function(key, value){
   var options = {
     url: GA_URL_ENDPOINT,
     headers: { 'User-Agent': UA },
@@ -95,21 +97,11 @@ _.each(jsonData, function(value, key){
       if (!error && response.statusCode == 200) {
         bar.tick();
         if(bar.complete) {
-          console.log(chalk.green('Complete!'));
+          console.log(chalk.green('Completed: The data is sent to ' + gaTrackingId));
         }
       } else {
-        console.log(chalk.red('Error: ', error));
+        util.error(error);
       }
     }
   );
 });
-
-
-
-
-
-
-
-function postData(key, value) {
-
-}

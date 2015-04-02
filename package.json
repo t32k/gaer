@@ -22,8 +22,8 @@
   "keywords": [
     "Google Analytics",
     "Event Tracking",
-    "Report",
-    "property"
+    "Monitoring",
+    "Graph"
   ],
   "engines": {
     "node": "0.10.x"
