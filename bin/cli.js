@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 'use strict';
+
 var fs = require('fs');
 var _ = require('underscore');
 var chalk = require('chalk');
@@ -26,30 +27,24 @@ program
   .option('-s, --stdin', 'Input JSON using stdin')
   .parse(process.argv);
 
-
 if (!program.args.length) {
-  console.log(chalk.red('\n No input file specified.'));
-  program.help();
+  util.error('No input file specified.');
 }
 
 
 // Google Analytics Tracking ID (EX: 'UA-12345-6')
 var gaTrackingId = process.env.GA_TID || program.tid || '';
 gaTrackingId = gaTrackingId.toUpperCase();
-
 if (gaTrackingId === '') {
-  console.log(chalk.red('`tid` option is required.'));
-  process.exit();
+  util.error('`tid` option is required.');
 } else if (gaTrackingId.indexOf('UA-') !== 0) {
-  console.log(chalk.red('`tid` option is invalid.'));
-  process.exit();
+  util.error('`tid` option is invalid.');
 }
 
 
 // GA Event Action Name
 if (!program.action){
-  console.log(chalk.red('`action` option is required.'));
-  process.exit();
+  util.error('`action` option is required.');
 }
 var gaEventAction = program.action;
 
@@ -76,7 +71,11 @@ var bar = new ProgressBar('Sending [:bar] :percent', {
   width: 24,
   total: _.size(jsonData)
 });
-
+_.each(jsonData, function(value){
+  if(isNaN(value)) {
+    util.error('`value` must be numeric.');
+  }
+});
 _.each(jsonData, function(value, key){
   var options = {
     url: GA_URL_ENDPOINT,
@@ -96,7 +95,7 @@ _.each(jsonData, function(value, key){
       if (!error && response.statusCode == 200) {
         bar.tick();
         if(bar.complete) {
-          console.log(chalk.green('Complete!\n'));
+          console.log(chalk.green('Complete!'));
         }
       } else {
         console.log(chalk.red('Error: ', error));
