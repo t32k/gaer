@@ -14,3 +14,5 @@ if (!program.args.length) {
   console.log(chalk.red('\n No input file specified.'));
   program.help();
 }
+
+console.log(process.argv);
