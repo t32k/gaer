@@ -1,3 +1,1 @@
-# GAETR
-
-Measurement Protocol
+# GAER

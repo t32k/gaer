@@ -1,10 +1,10 @@
 {
-  "name": "gaetr",
+  "name": "gaer",
   "version": "0.0.1",
-  "description": "",
+  "description": "A CLI for Google Analytics Event Tracking Report",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": ""
   },
   "bin": {
     "gar": "bin/cli.js"
@@ -16,13 +16,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/t32k/gaetr.git"
+    "url": "https://github.com/t32k/gaer.git"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/t32k/gaetr/issues"
+    "url": "https://github.com/t32k/gaer/issues"
   },
-  "homepage": "https://github.com/t32k/gaetr",
+  "homepage": "https://github.com/t32k/gaer",
   "dependencies": {
     "chalk": "^1.0.0",
     "commander": "^2.7.1",
