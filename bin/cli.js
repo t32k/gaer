@@ -9,7 +9,7 @@ var program = require('commander');
 var ProgressBar = require('progress');
 
 var util = require('../lib/util');
-var pkg =require('../package.json');
+var pkg = require('../package.json');
 
 var UA = 'GAERbot/' + pkg.version + ' (+' + pkg.homepage + ')';
 var GA_URL_ENDPOINT = 'https://ssl.google-analytics.com/collect';
@@ -18,7 +18,6 @@ var GA_CLIENT_ID = Math.round(2147483647 * Math.random());
 var GA_HIT_TYPE = 'event';
 var GA_EVENT_CATEGORY = 'GAER';
 
-console.log(UA);
 program
   .version(pkg.version)
   .usage('[options] <JSON>')
