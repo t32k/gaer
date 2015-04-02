@@ -1,6 +1,6 @@
 {
   "name": "gaer",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A CLI for Google Analytics Event Tracking Report",
   "bin": {
     "gaer": "bin/cli.js"
