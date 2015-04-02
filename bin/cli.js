@@ -6,6 +6,7 @@ var _ = require('underscore');
 var chalk = require('chalk');
 var request = require('request');
 var program = require('commander');
+var ProgressBar = require('progress');
 
 var util = require('../lib/util');
 
@@ -68,9 +69,15 @@ if (util.isFile(program.args[0])) {
 } else if (_.isObject(program.args[0])) {
   jsonData = program.args[0];
 }
-_.each(jsonData, function(key, value){
-  var gaEvenLabel = key;
-  var gaEventValue = value;
+
+var bar = new ProgressBar('Sending [:bar] :percent', {
+  complete: '|',
+  incomplete: '+',
+  width: 24,
+  total: _.size(jsonData)
+});
+
+_.each(jsonData, function(value, key){
   var options = {
     url: GA_URL_ENDPOINT,
     headers: { 'User-Agent': TOOL_NAME },
@@ -81,16 +88,29 @@ _.each(jsonData, function(key, value){
       t: GA_HIT_TYPE,
       ec: GA_EVENT_CATEGORY ,
       ea: gaEventAction,
-      el: gaEvenLabel,
-      ev: gaEventValue
+      el: key,
+      ev: value
     }
   };
   request.post(options, function (error, response) {
       if (!error && response.statusCode == 200) {
-        console.log(chalk.green('Success!'));
+        bar.tick();
+        if(bar.complete) {
+          console.log(chalk.green('Complete!\n'));
+        }
       } else {
         console.log(chalk.red('Error: ', error));
       }
     }
   );
 });
+
+
+
+
+
+
+
+function postData(key, value) {
+
+}
