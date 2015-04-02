@@ -9,17 +9,18 @@ var program = require('commander');
 var ProgressBar = require('progress');
 
 var util = require('../lib/util');
+var pkg =require('../package.json');
 
-var TOOL_NAME = 'GAER';
+var UA = 'GAERbot/' + pkg.version + ' (+' + pkg.homepage + ')';
 var GA_URL_ENDPOINT = 'https://ssl.google-analytics.com/collect';
 var GA_VERSION = 1;
 var GA_CLIENT_ID = Math.round(2147483647 * Math.random());
 var GA_HIT_TYPE = 'event';
-var GA_EVENT_CATEGORY = TOOL_NAME;
+var GA_EVENT_CATEGORY = 'GAER';
 
-
+console.log(UA);
 program
-  .version(require('../package.json').version)
+  .version(pkg.version)
   .usage('[options] <JSON>')
   .option('-t, --tid [ID]', 'set your Google Analitics tracking ID')
   .option('-a, --action [Name]', 'set your Action report name')
@@ -80,7 +81,7 @@ var bar = new ProgressBar('Sending [:bar] :percent', {
 _.each(jsonData, function(value, key){
   var options = {
     url: GA_URL_ENDPOINT,
-    headers: { 'User-Agent': TOOL_NAME },
+    headers: { 'User-Agent': UA },
     form: {
       v: GA_VERSION,
       tid: gaTrackingId,
