@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/t32k/gaetr",
   "dependencies": {
+    "chalk": "^1.0.0",
     "commander": "^2.7.1",
     "underscore": "^1.8.2"
   }
