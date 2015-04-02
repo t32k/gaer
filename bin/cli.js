@@ -4,14 +4,18 @@
 
 var _ = require('underscore');
 var chalk = require('chalk');
-var program = require('commander');
 var request = require('request');
-var qs = require('querystring');
+var program = require('commander');
+
+var GA_VERSION = 1;
+var GA_CLIENT_ID = Math.round(2147483647 * Math.random());
+var GA_HIT_TYPE = 'event';
+var GA_EVENT_CATEGORY = 'GAR';
 
 
 program
   .version(require('../package.json').version)
-  .usage('[options] <file ...>')
+  .usage('<Google Tracking ID> <Report Name> <JSON>')
   .parse(process.argv);
 
 if (!program.args.length) {
@@ -19,10 +23,7 @@ if (!program.args.length) {
   program.help();
 }
 
-var GA_VERSION = 1;
-var GA_CLIENT_ID = '35009a79-1a05-49d7-b876-2b884d0f825a';
-var GA_HIT_TYPE = 'event';
-var GA_EVENT_CATEGORY = 'GAR';
+
 
 var gaTrackingId = 'UA-2317436-26';
 var gaEventAction = 'StyleStas';
