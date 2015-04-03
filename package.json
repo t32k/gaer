@@ -29,7 +29,7 @@
     "node": "0.10.x"
   },
   "scripts": {
-    "test": ""
+    "test": "mocha --reporter=spec"
   },
   "dependencies": {
     "chalk": "^1.0.0",
