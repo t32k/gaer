@@ -1,4 +1,4 @@
-# GAER
+# GAER [![Build Status](https://travis-ci.org/t32k/gaer.svg?branch=master)](https://travis-ci.org/t32k/gaer)
 
 > A CLI for Google Analytics Event Tracking Report.
 
