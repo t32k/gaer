@@ -14,45 +14,47 @@ program
   .option('-r, --report [Name]', 'set your GA Action report name')
   .parse(process.argv);
 
-if (!program.args.length) {
-  util.error('No input file specified.');
-}
 
 // Google Analytics Tracking ID (EX: 'UA-12345-6')
 var gaTrackingId = process.env.GA_TID || program.tid || '';
 gaTrackingId = gaTrackingId.toUpperCase();
 if (gaTrackingId === '') {
-  util.error('--tid option is required.');
+  util.errorLog('--tid option is required.');
 } else if (gaTrackingId.indexOf('UA-') !== 0) {
-  util.error('--tid option is invalid.');
+  util.errorLog('--tid option is invalid.');
 }
 
 // GA Event Action Name
 var gaEventAction = process.env.GA_REPORT || program.report || '';
 if (gaEventAction === '') {
-  util.error('--report option is required.');
+  util.errorLog('--report option is required.');
 }
 
 // GA Repot Data
-var reportData = program.args[0];
-if (util.isFile(reportData)) {
-  var strings = fs.readFileSync(reportData, {
-    encoding: 'utf8'
-  });
-  try {
-    reportData = JSON.parse(strings);
-  } catch (error) {
-    throw util.error(error);
+var reportData = '';
+if (process.stdin.isTTY) {
+  if (!program.args.length) {
+    util.errorLog('No input file specified.');
   }
+  reportData = program.args[0];
+  if (util.isFile(reportData)) {
+    var strings = fs.readFileSync(reportData, {
+      encoding: 'utf8'
+    });
+    reportData = util.parseJSON(strings);
+  } else {
+    util.errorLog('argument must be JSON file');
+  }
+  gaer(gaTrackingId, gaEventAction, reportData);
 } else {
-  util.error('argument must be JSON');
+  var chunks = '';
+  process.stdin.resume();
+  process.stdin.setEncoding('utf8');
+  process.stdin.on('data', function(chunk) {
+    chunks += chunk;
+  });
+  process.stdin.on('end', function() {
+    reportData = util.parseJSON(chunks);
+    gaer(gaTrackingId, gaEventAction, reportData);
+  });
 }
-
-// Check values
-Object.keys(reportData).forEach(function (key, value) {
-  if (isNaN(value)) {
-    util.error('`value` must be numeric.');
-  }
-});
-
-gaer(gaTrackingId, gaEventAction, reportData);
