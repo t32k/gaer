@@ -10,9 +10,8 @@ var gaer = require('../lib/gaer');
 program
   .version(pkg.version)
   .usage('[options] <JSON>')
-  .option('-t, --tid [ID]', 'set your Google Analitics tracking ID')
-  .option('-r, --report [Name]', 'set your Action report name')
-  .option('-s, --stdin', 'Input JSON using stdin')
+  .option('-t, --tid [ID]', 'set your Google Analitics Tracking ID')
+  .option('-r, --report [Name]', 'set your GA Action report name')
   .parse(process.argv);
 
 if (!program.args.length) {
