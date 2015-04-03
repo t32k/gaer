@@ -50,10 +50,10 @@ if (process.stdin.isTTY) {
   var chunks = '';
   process.stdin.resume();
   process.stdin.setEncoding('utf8');
-  process.stdin.on('data', function(chunk) {
+  process.stdin.on('data', function (chunk) {
     chunks += chunk;
   });
-  process.stdin.on('end', function() {
+  process.stdin.on('end', function () {
     reportData = util.parseJSON(chunks);
     gaer(gaTrackingId, gaEventAction, reportData);
   });
