@@ -47,21 +47,27 @@ npm install -g gaer
 
 ## Example
 
+Standard way:
 ```shell
 gaer --tid UA-xxxxxxx-x --report ReportName path/to/json/file.json
 ```
 
+Shortcut way:
 ```shell
 gaer -t UA-xxxxxxx-x -r ReportName path/to/json/file.json
 ```
 
+Using environment variables:
 ```shell
 GA_TID=UA-xxxxxxx-x GA_REPORT=ReportName gaer path/to/json/file.json
 ```
 
+Using pipe:
 ```shell
 stylestats -f json -n path/to/css/file.css | gaer -t UA-xxxxxxx-x -r ReportName
 ```
+
+See also: [t32k/stylestats](https://github.com/t32k/stylestats)
 
 ## Limits and Quotas
 
