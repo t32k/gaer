@@ -2,6 +2,7 @@
 'use strict';
 
 var fs = require('fs');
+var stdin = require('get-stdin');
 var program = require('commander');
 var pkg = require('../package.json');
 var util = require('../lib/util');
@@ -47,14 +48,8 @@ if (process.stdin.isTTY) {
   }
   gaer(gaTrackingId, gaEventAction, reportData);
 } else {
-  var chunks = '';
-  process.stdin.resume();
-  process.stdin.setEncoding('utf8');
-  process.stdin.on('data', function (chunk) {
-    chunks += chunk;
-  });
-  process.stdin.on('end', function () {
-    reportData = util.parseJSON(chunks);
+  stdin(function (data) {
+    reportData = util.parseJSON(data);
     gaer(gaTrackingId, gaEventAction, reportData);
   });
 }
