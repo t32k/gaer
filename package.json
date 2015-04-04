@@ -1,5 +1,5 @@
 {
-  "name": "GAER",
+  "name": "gaer",
   "version": "0.9.0",
   "description": "A CLI for Google Analytics Event Tracking Report",
   "bin": {
