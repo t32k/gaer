@@ -15,6 +15,9 @@ program
   .option('-r, --report <Name>', 'set your GA Action report name')
   .parse(process.argv);
 
+if (process.stdin.isTTY && !program.args.length) {
+  util.log('e', 'No input file specified.');
+}
 
 // Google Analytics Tracking ID (EX: 'UA-12345-6')
 var gaTrackingId = process.env.GA_TID || program.tid || '';
@@ -31,12 +34,9 @@ if (gaEventAction === '') {
   util.log('e', '--report option is required.');
 }
 
-// GA Repot Data
+// GA Report Data
 var reportData = '';
 if (process.stdin.isTTY) {
-  if (!program.args.length) {
-    util.log('e', 'No input file specified.');
-  }
   reportData = program.args[0];
   if (util.isFile(reportData)) {
     var strings = fs.readFileSync(reportData, {

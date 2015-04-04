@@ -41,8 +41,8 @@ npm install -g gaer
 
     -h, --help           output usage information
     -V, --version        output the version number
-    -t, --tid [ID]       set your Google Analytics Tracking ID
-    -r, --report [Name]  set your GA Action report name
+    -t, --tid <ID>       set your Google Analytics Tracking ID
+    -r, --report <Name>  set your GA Action report name
 ```
 
 ## Example
