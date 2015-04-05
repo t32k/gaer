@@ -45,7 +45,7 @@ npm install -g gaer
     -r, --report <Name>  set your GA Action report name
 ```
 
-## Example
+## CLI Example
 
 Standard way:
 ```shell
