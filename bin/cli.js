@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 'use strict';
 
-var stdin = require('get-stdin');
-var program = require('commander');
 var pkg = require('../package.json');
 var util = require('../lib/util');
 var Gaer = require('../lib/gaer');
+var stdin = require('get-stdin');
+var program = require('commander');
 
 program
   .version(pkg.version)
@@ -20,11 +20,10 @@ if (process.stdin.isTTY && !program.args.length) {
 
 // Tracking ID (EX: 'UA-12345-6')
 var trackingID = process.env.GA_TID || program.tid || '';
+var gaer = new Gaer(trackingID);
 
 // Action Name
 var actionName = process.env.GA_REPORT || program.report || '';
-
-var gaer = new Gaer(trackingID);
 
 // GA Report Data
 if (process.stdin.isTTY) {
