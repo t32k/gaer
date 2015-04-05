@@ -22,15 +22,15 @@ if (process.stdin.isTTY && !program.args.length) {
 var trackingID = process.env.GA_TID || program.tid || '';
 var gaer = new Gaer(trackingID);
 
-// Action Name
-var actionName = process.env.GA_REPORT || program.report || '';
+// Report Name
+var reportName = process.env.GA_REPORT || program.report || '';
 
 // GA Report Data
 if (process.stdin.isTTY) {
   var reportData = program.args[0];
-  gaer.record(actionName, reportData);
+  gaer.record(reportName, reportData);
 } else {
   stdin(function (data) {
-    gaer.record(actionName, data);
+    gaer.record(reportName, data);
   });
 }
