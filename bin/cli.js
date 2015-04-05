@@ -1,12 +1,11 @@
 #!/usr/bin/env node
 'use strict';
 
-var fs = require('fs');
 var stdin = require('get-stdin');
 var program = require('commander');
 var pkg = require('../package.json');
 var util = require('../lib/util');
-var gaer = require('../lib/gaer');
+var Gaer = require('../lib/gaer');
 
 program
   .version(pkg.version)
@@ -19,37 +18,20 @@ if (process.stdin.isTTY && !program.args.length) {
   util.log('e', 'No input file specified.');
 }
 
-// Google Analytics Tracking ID (EX: 'UA-12345-6')
-var gaTrackingId = process.env.GA_TID || program.tid || '';
-gaTrackingId = gaTrackingId.toUpperCase();
-if (gaTrackingId === '') {
-  util.log('e', '--tid option is required.');
-} else if (gaTrackingId.indexOf('UA-') !== 0) {
-  util.log('e', '--tid option is invalid.');
-}
+// Tracking ID (EX: 'UA-12345-6')
+var trackingID = process.env.GA_TID || program.tid || '';
 
-// GA Event Action Name
-var gaEventAction = process.env.GA_REPORT || program.report || '';
-if (gaEventAction === '') {
-  util.log('e', '--report option is required.');
-}
+// Action Name
+var actionName = process.env.GA_REPORT || program.report || '';
+
+var gaer = new Gaer(trackingID);
 
 // GA Report Data
-var reportData = '';
 if (process.stdin.isTTY) {
-  reportData = program.args[0];
-  if (util.isFile(reportData)) {
-    var strings = fs.readFileSync(reportData, {
-      encoding: 'utf8'
-    });
-    reportData = util.parseJSON(strings);
-  } else {
-    util.log('e', 'argument must be JSON file');
-  }
-  gaer(gaTrackingId, gaEventAction, reportData);
+  var reportData = program.args[0];
+  gaer.record(actionName, reportData);
 } else {
   stdin(function (data) {
-    reportData = util.parseJSON(data);
-    gaer(gaTrackingId, gaEventAction, reportData);
+    gaer.record(actionName, data);
   });
 }
