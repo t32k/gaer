@@ -69,6 +69,17 @@ stylestats -f json -n path/to/css/file.css | gaer -t UA-xxxxxxx-x -r ReportName
 
 See also: [t32k/stylestats](https://github.com/t32k/stylestats)
 
+
+## API Example
+
+You can use the API directly too:
+
+```javascript
+var Gaer = require('gaer');
+var gaer = new Gaer('UA-xxxxx-x');
+gaer.record('Report Name', 'path/to/data.json');
+```
+
 ## Limits and Quotas
 
 Please refer to as follows:
