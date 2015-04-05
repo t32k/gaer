@@ -57,6 +57,11 @@ Shortcut way:
 gaer -t UA-xxxxxxx-x -r ReportName path/to/json/file.json
 ```
 
+Debug mode:
+```shell
+DEBUG=1 gaer -t UA-xxxxxxx-x -r ReportName path/to/json/file.json
+```
+
 Using environment variables:
 ```shell
 GA_TID=UA-xxxxxxx-x GA_REPORT=ReportName gaer path/to/json/file.json
