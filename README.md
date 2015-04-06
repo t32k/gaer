@@ -7,7 +7,7 @@
 Did you know Google Analytics has a report feature developers can use freely? It's a Event Tracking Report. GAER allows you to store your data object and monitor the data history using [Measurement Protocol](https://developers.google.com/analytics/devguides/collection/protocol/v1/devguide). In other words, you can send your data to Google Analytics server from CLI tool.
 
 ```shell
-$ gear -t UA-xxxxx-xx -r reportName path/to/data.json
+$ gaer -t UA-xxxxx-xx -r reportName path/to/data.json
   Sending [||||||||||||||||||||||||] 100%
   Success: The data is sent to UA-xxxxx-xx
 ```
