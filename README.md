@@ -4,7 +4,13 @@
 
 [![Build Status](https://travis-ci.org/t32k/gaer.svg?branch=master)](https://travis-ci.org/t32k/gaer)
 
-Did you know Google Analytics has a report feature developers can use freely? It's a Event Tracking Report. GAER allows you to store your data object and monitor the data history using [Measurement Protocol](https://developers.google.com/analytics/devguides/collection/protocol/v1/devguide).
+Did you know Google Analytics has a report feature developers can use freely? It's a Event Tracking Report. GAER allows you to store your data object and monitor the data history using [Measurement Protocol](https://developers.google.com/analytics/devguides/collection/protocol/v1/devguide). In other words, you can send your data to Google Analytics server from CLI tool.
+
+```shell
+$ gear -t UA-xxxxx-xx -r reportName path/to/data.json
+  Sending [||||||||||||||||||||||||] 100%
+  Success: The data is sent to UA-xxxxx-xx
+```
 
 ## Getting Started
 
@@ -25,6 +31,32 @@ The JSON data you want to store must be simple object and all value must be nume
 // Bad :(
 { "foo": 3, "bar": 9, "baz": [0,1,3] }
 ```
+
+### Event Tracking Parameter 
+
+Please see the details below. 
+
++ [Measurement Protocol Parameter Reference](https://developers.google.com/analytics/devguides/collection/protocol/v1/parameters?hl=en#events)
+
+| Event  	  | Type     | in GARE      　   |
+| ----------|----------| ------------------|
+| Category  | String   | `GAER`            |
+| Action    | String   | `--report` value  |
+| Label     | String   | object.key        |
+| Value     | Number   | object.value      |
+
+
+## Report on Google Analytics
+
+You can see the data report you sent from CLI on `Behavior` > `Events` menu.
+
+![](http://i.imgur.com/WtZUpqj.png)
+
+
+As shown below, you can also use [the Custom Report for GARE](http://goo.gl/KNxaiP).
+
+![](http://i.imgur.com/YD18HVi.png)
+
 
 ## Install
 
