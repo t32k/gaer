@@ -32,21 +32,21 @@ The JSON data you want to store must be simple object and all value must be nume
 { "foo": 3, "bar": 9, "baz": [0,1,3] }
 ```
 
-### Event Tracking Parameter 
+#### Event Tracking Parameter 
 
 Please see the details below. 
 
-+ [Measurement Protocol Parameter Reference](https://developers.google.com/analytics/devguides/collection/protocol/v1/parameters?hl=en#events)
-
 | Event  	  | Type     | in GARE      　   |
 | ----------|----------| ------------------|
-| Category  | String   | `GAER`            |
+| Category  | String   | `GAER` (Fixed)    |
 | Action    | String   | `--report` value  |
 | Label     | String   | object.key        |
 | Value     | Number   | object.value      |
 
++ [Measurement Protocol Parameter Reference](https://developers.google.com/analytics/devguides/collection/protocol/v1/parameters?hl=en#events)
 
-## Report on Google Analytics
+
+## Reports on Google Analytics
 
 You can see the data report you sent from CLI on `Behavior` > `Events` menu.
 
