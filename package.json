@@ -1,6 +1,6 @@
 {
   "name": "gaer",
-  "version": "0.10.2",
+  "version": "0.11.0",
   "description": "A CLI for Google Analytics Event Tracking Report",
   "bin": {
     "gaer": "bin/cli.js"
@@ -35,12 +35,12 @@
   "dependencies": {
     "chalk": "^1.0.0",
     "commander": "^2.7.1",
+    "get-stdin": "^5.0.0",
     "progress": "^1.1.8",
-    "request": "^2.54.0",
-    "get-stdin": "^4.0.1"
+    "request": "^2.54.0"
   },
   "devDependencies": {
-    "chai": "^2.2.0",
+    "chai": "^3.3.0",
     "mocha": "^2.2.1"
   }
 }
