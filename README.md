@@ -1,8 +1,8 @@
 ![](http://i.imgur.com/EFdSeYf.png)
 
-> A CLI for Google Analytics Event Tracking Report.
+> A CLI for Google Analytics Event Tracking Report
 
-[![Build Status](https://travis-ci.org/t32k/gaer.svg?branch=master)](https://travis-ci.org/t32k/gaer)
+[![Builrd Status](https://travis-ci.org/t32k/gaer.svg?branch=master)](https://travis-ci.org/t32k/gaer)
 
 Did you know Google Analytics has a report feature developers can use freely? It's a Event Tracking Report. GAER allows you to store your data object and monitor the data history using [Measurement Protocol](https://developers.google.com/analytics/devguides/collection/protocol/v1/devguide). In other words, you can send your data to Google Analytics server from CLI tool.
 
